@@ -65,7 +65,7 @@ const Services = () => {
         </Card>
       ))}
     </>
-  );
+  ); 
 };
 
 export default Services;
