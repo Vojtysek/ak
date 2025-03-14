@@ -26,6 +26,7 @@ interface FormTextProps {
         | "real-estate"
         | "estate-planning";
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any,
     undefined
   >;
