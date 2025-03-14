@@ -2,11 +2,9 @@ import Link from "next/link";
 import {
   ArrowRight,
   Award,
-  BookOpen,
   Clock,
   Mail,
   MapPin,
-  Menu,
   Phone,
   Scale,
   Shield,
@@ -14,18 +12,16 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section } from "@/components/custom/section";
 import { Navbar } from "@/components/custom/navbar";
 import Services from "@/components/custom/services";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen bg-muted flex-col">
       <Navbar />
       <main className="flex-1 container mx-auto">
-        <Section id="">
+        <Section id="home">
           <div className="px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
               <div className="flex flex-col justify-center space-y-4">
@@ -115,8 +111,8 @@ export default function Home() {
           </div>
         </Section>
         <Section id="kontakty">
-          <div className=" grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-4">
+          <div className="grid px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
+            <div className="space-y-4 mt-6">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                   Kontaktujte nás
@@ -137,7 +133,9 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-5 w-5 text-primary" />
-                  <p>info@advokatnikancelar.cz</p>
+                  <a href="mailto:info@advokatnikancelar.cz">
+                    info@advokatnikancelar.cz
+                  </a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5 text-primary" />
@@ -145,101 +143,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="space-y-4">
-              <div className="grid gap-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="first-name"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Jméno
-                    </label>
-                    <input
-                      id="first-name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Zadejte své jméno"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="last-name"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Příjmení
-                    </label>
-                    <input
-                      id="last-name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Zadejte své příjmení"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Zadejte svůj email"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="phone"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Telefon
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Zadejte své telefonní číslo"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="practice-area"
-                    className="text-sm font-medium leading-none"
-                  >
-                    Oblast praxe
-                  </label>
-                  <select
-                    id="practice-area"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    <option value="corporate">Obchodní právo</option>
-                    <option value="litigation">Litigace</option>
-                    <option value="family">Rodinné právo</option>
-                    <option value="ip">Duševní vlastnictví</option>
-                    <option value="real-estate">Nemovitosti</option>
-                    <option value="estate-planning">Plánování dědictví</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Zpráva
-                  </label>
-                  <textarea
-                    id="message"
-                    className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Stručně popište svůj právní problém"
-                  ></textarea>
-                </div>
-                <Button type="submit" size="lg">
-                  Domluvit konzultaci
-                </Button>
-              </div>
-            </div>
+            {/* <div className="space-y-4">
+              <ContactUs />
+            </div> */}
           </div>
         </Section>
       </main>

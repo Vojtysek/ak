@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 const navbarItems = [
   {
     name: "Domů",
-    href: "#",
+    href: "#home",
   },
   {
     name: "O nás",
