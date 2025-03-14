@@ -2,7 +2,7 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "../ui/
 import { Input } from "../ui/input";
 
 interface FormTextProps {
-  name: "firstName" | "lastName" | "email" | "phone" | "message"; // Povolené názvy polí
+  name: "firstName" | "lastName" | "email" | "phone" | "message";
   label: string;
   form: any;
 }
@@ -11,7 +11,7 @@ const FormText: React.FC<FormTextProps> = ({ name, label, form }) => {
   return (
     <FormField
       control={form.control}
-      name={name} // Správný název pole
+      name={name}
       render={({ field }) => (
         <FormItem className="w-full">
           <FormLabel>{label}</FormLabel>
