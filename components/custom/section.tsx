@@ -1,4 +1,3 @@
-import { Separator } from "../ui/separator";
 
 export const Section = ({
   children,
