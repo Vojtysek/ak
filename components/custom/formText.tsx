@@ -1,10 +1,34 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "../ui/form";
+import { UseFormReturn } from "react-hook-form";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 
 interface FormTextProps {
   name: "firstName" | "lastName" | "email" | "phone" | "message";
   label: string;
-  form: any;
+  form: UseFormReturn<
+    {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      message: string;
+      practiceArea:
+        | "corporate"
+        | "litigation"
+        | "family"
+        | "ip"
+        | "real-estate"
+        | "estate-planning";
+    },
+    any,
+    undefined
+  >;
 }
 
 const FormText: React.FC<FormTextProps> = ({ name, label, form }) => {

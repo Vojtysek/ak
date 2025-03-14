@@ -41,7 +41,6 @@ const ContactUs = () => {
       }),
     message: z.string().min(10, "Zpráva musí obsahovat alespoň 10 znaků"),
   });
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,11 +54,9 @@ const ContactUs = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    
     console.log(values);
 
     form.reset();
-
   }
 
   return (
