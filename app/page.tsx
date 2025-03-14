@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/custom/section";
 import { Navbar } from "@/components/custom/navbar";
 import Services from "@/components/custom/services";
+import ContactUs from "@/components/custom/contactus";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
@@ -88,6 +90,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Separator orientation="horizontal" />
         </Section>
         <Section id="services">
           <div className="px-4 md:px-6">
@@ -111,7 +114,7 @@ export default function Home() {
           </div>
         </Section>
         <Section id="kontakty">
-          <div className="grid px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
+          <div className="grid px-4 md:px-6 lg:grid-cols-2 gap-8 lg:gap-12">
             <div className="space-y-4 mt-6">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -143,9 +146,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            {/* <div className="space-y-4">
+            <Separator orientation="horizontal" />
+            <div className="space-y-4">
               <ContactUs />
-            </div> */}
+            </div>
           </div>
         </Section>
       </main>
