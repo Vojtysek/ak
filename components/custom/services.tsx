@@ -20,6 +20,7 @@ const Services = () => {
           <CardHeader className="flex flex-row items-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
               {React.cloneElement(icons[index % icons.length], {
+                key: index,
                 className: "h-6 w-6",
               })}
             </div>

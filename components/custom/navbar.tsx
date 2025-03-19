@@ -25,7 +25,13 @@ const navbarItems = [
   },
 ];
 
-export const Navbar = (props: any) => {
+type PropsType = {
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  theme: string | undefined;
+  mounted: boolean;
+};
+
+export const Navbar = (props: PropsType) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
