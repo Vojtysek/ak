@@ -9,7 +9,6 @@ import { useState } from "react";
 const navbarItems = [
   {
     name: "Domů",
-    href: "",
   },
   {
     name: "O nás",
@@ -36,7 +35,7 @@ export const Navbar = (props: PropsType) => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full dark:bg-[#1F1F1F] border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="w-full px-8 flex h-16 items-center justify-between ">
           <div className="">
             <Link
@@ -54,7 +53,7 @@ export const Navbar = (props: PropsType) => {
                 <Link
                   className="hover:scale-105 transition-all duration-200"
                   key={index}
-                  href={item.href}
+                  href={item.href || ""}
                 >
                   <p>{item.name}</p>
                 </Link>
@@ -97,7 +96,7 @@ export const Navbar = (props: PropsType) => {
                     <Link
                       onClick={() => setIsSheetOpen(false)}
                       key={index}
-                      href={item.href}
+                      href={item.href || ""}
                       className="text-base font-medium transition-colors hover:text-primary"
                     >
                       {item.name}

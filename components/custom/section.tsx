@@ -10,7 +10,7 @@ export const Section = ({
   return (
     <section
       id={id}
-      className={`w-full pt-12 md:py-24 lg:py-32 xl:py-48 bg-muted min-h-[50vh] lg:max-h-screen ${className}`}
+      className={`w-full bg-muted min-h-[90vh] lg:justify-center flex flex-col first:pt-12 pt-24 items-center  ${className}`}
     >
       {children}
     </section>

@@ -90,8 +90,8 @@
 }
 
 .dark {
-  --maincolor: #5049cb;
-  --seccolor: #2e2b5a;
+  --maincolor: #7e9cf1;
+  --seccolor: #92a8be;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
