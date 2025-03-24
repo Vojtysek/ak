@@ -20,8 +20,11 @@ import {
   SelectValue,
 } from "../ui/select";
 import FormText from "./formText";
+import { useState } from "react";
 
 const ContactUs = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const formSchema = z.object({
     firstName: z.string().min(1, "Jméno je povinné"),
     lastName: z.string().min(1, "Příjmení je povinné"),
@@ -41,6 +44,7 @@ const ContactUs = () => {
       }),
     message: z.string().min(10, "Zpráva musí obsahovat alespoň 10 znaků"),
   });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,19 +57,40 @@ const ContactUs = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsSubmitting(true);
 
-    form.reset();
+      // Volání API endpointu pro odeslání emailu
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Nastala chyba při odesílání zprávy");
+      }
+
+      form.reset();
+    } catch (error) {
+      console.error("Chyba při odesílání:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4 "
+        className="flex flex-col gap-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           <FormText name="firstName" label="Křestní jméno" form={form} />
           <FormText name="lastName" label="Příjmení" form={form} />
         </div>
@@ -78,7 +103,7 @@ const ContactUs = () => {
           name="practiceArea"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Practice Area</FormLabel>
+              <FormLabel>Oblast praxe</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="w-full">
@@ -86,14 +111,12 @@ const ContactUs = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="corporate">Corporate</SelectItem>
-                  <SelectItem value="litigation">Litigation</SelectItem>
-                  <SelectItem value="family">Family</SelectItem>
-                  <SelectItem value="ip">IP</SelectItem>
-                  <SelectItem value="real-estate">Real Estate</SelectItem>
-                  <SelectItem value="estate-planning">
-                    Estate Planning
-                  </SelectItem>
+                  <SelectItem value="corporate">Korporátní právo</SelectItem>
+                  <SelectItem value="litigation">Sporná agenda</SelectItem>
+                  <SelectItem value="family">Rodinné právo</SelectItem>
+                  <SelectItem value="ip">Duševní vlastnictví</SelectItem>
+                  <SelectItem value="real-estate">Nemovitosti</SelectItem>
+                  <SelectItem value="estate-planning">Dědické právo</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -102,7 +125,10 @@ const ContactUs = () => {
         />
 
         <FormText name="message" label="Zpráva" form={form} />
-        <Button type="submit">Odeslat</Button>
+
+        <Button type="submit" disabled={isSubmitting} className="mt-2">
+          {isSubmitting ? "Odesílám..." : "Odeslat"}
+        </Button>
       </form>
     </Form>
   );

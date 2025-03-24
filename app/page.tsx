@@ -19,14 +19,45 @@ import { Navbar } from "@/components/custom/navbar";
 import Services from "@/components/custom/services";
 import ContactUs from "@/components/custom/contactus";
 import { Separator } from "@/components/ui/separator";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Fade } from "@/lib/animations";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import ReCAPTCHA from "react-google-recaptcha";
+import type { NextPage } from "next";
 
-export default function Home() {
+const Home: NextPage = () => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isVerified, setIsVerified] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState<boolean>(false);
+
+  async function handleCaptchaSubmission(token: string | null) {
+    try {
+      if (token) {
+        await fetch("/api", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        setIsVerified(true);
+      }
+    } catch (e) {
+      console.error(e);
+      setIsVerified(false);
+    }
+  }
+
+  const handleChange = (token: string | null) => {
+    handleCaptchaSubmission(token);
+  };
+
+  function handleExpired() {
+    setIsVerified(false);
+  }
 
   useEffect(() => {
     setMounted(true);
@@ -36,6 +67,19 @@ export default function Home() {
     <div className="flex min-h-screen bg-muted flex-col">
       <Navbar setTheme={setTheme} theme={theme} mounted={mounted} />
       <main className="flex-1 container mx-auto">
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+          ref={recaptchaRef}
+          onChange={handleChange}
+          onExpired={handleExpired}
+        />
+        <button
+          className="border-solid border-1 border-gray-300 rounded-md p-2 bg-blue-500 text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+          type="submit"
+          disabled={!isVerified}
+        >
+          Submit Form
+        </button>
         <Section id="home" className="h-[10vh] lg:justify-center">
           <div className="flex flex-row w-full m-0 p-0">
             <div className="px-6 w-full lg:w-1/2">
@@ -222,4 +266,7 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
+
