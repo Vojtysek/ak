@@ -20,40 +20,10 @@ import {
   SelectValue,
 } from "../ui/select";
 import FormText from "./formText";
-import { useRef, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 
 const ContactUs = () => {
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isVerified, setIsVerified] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  async function handleCaptchaSubmission(token: string | null) {
-    try {
-      if (token) {
-        await fetch("/api", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        });
-        setIsVerified(true);
-      }
-    } catch (e) {
-      console.error(e);
-      setIsVerified(false);
-    }
-  }
-
-  const handleChange = (token: string | null) => {
-    handleCaptchaSubmission(token);
-  };
-
-  function handleExpired() {
-    setIsVerified(false);
-  }
 
   const formSchema = z.object({
     firstName: z.string().min(1, "Jméno je povinné"),
@@ -154,31 +124,15 @@ const ContactUs = () => {
         />
 
         <FormText name="message" label="Zpráva" form={form} />
-        {!isVerified ? (
-          <div className="flex justify-center">
-            <div className="flex flex-col">
-              <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                ref={recaptchaRef}
-                onChange={handleChange}
-                onExpired={handleExpired}
-              />
-              <button
-                className="border-solid border-1 border-gray-300 rounded-md p-2 bg-blue-500 text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-                type="submit"
-                disabled={!isVerified}
-              >
-                Submit Form
-              </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <Button type="submit" disabled={isSubmitting} className="mt-2">
-              {isSubmitting ? "Odesílám..." : "Odeslat"}
-            </Button>
-          </>
-        )}
+
+        <div
+          className="cf-turnstile"
+          data-sitekey={process.env.CLOUDFLARE_SITE_KEY}
+        ></div>
+
+        <Button type="submit" disabled={isSubmitting} className="mt-2">
+          {isSubmitting ? "Odesílám..." : "Odeslat"}
+        </Button>
       </form>
     </Form>
   );
