@@ -1,4 +1,4 @@
-import { Menu, Moon, Scale, Sun } from "lucide-react";
+import { Menu, Scale } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,13 +24,13 @@ const navbarItems = [
   },
 ];
 
-type PropsType = {
+/* type PropsType = {
   setTheme: React.Dispatch<React.SetStateAction<string>>;
   theme: string | undefined;
   mounted: boolean;
-};
+}; */
 
-export const Navbar = (props: PropsType) => {
+export const Navbar = (/* props: PropsType */) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
@@ -64,7 +64,7 @@ export const Navbar = (props: PropsType) => {
             <Button asChild className="hidden md:inline-flex">
               <Link href="#kontakty">Domluvit konzultaci</Link>
             </Button>
-            <Button
+            {/* <Button
               variant="outline"
               className="hidden md:inline-flex"
               onClick={() =>
@@ -76,7 +76,7 @@ export const Navbar = (props: PropsType) => {
               ) : (
                 <Moon className="h-5 w-5" />
               )}
-            </Button>
+            </Button> */}
           </div>
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
@@ -112,7 +112,7 @@ export const Navbar = (props: PropsType) => {
                       {content.home.buttons.consultation}
                     </Link>
                   </Button>
-                  <Button
+                  {/* <Button
                     className="w-max"
                     variant="outline"
                     onClick={() =>
@@ -124,7 +124,7 @@ export const Navbar = (props: PropsType) => {
                     ) : (
                       <Moon className="h-5 w-5" />
                     )}
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </SheetContent>

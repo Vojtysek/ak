@@ -19,22 +19,21 @@ import { Navbar } from "@/components/custom/navbar";
 import Services from "@/components/custom/services";
 import ContactUs from "@/components/custom/contactus";
 import { Separator } from "@/components/ui/separator";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Fade } from "@/lib/animations";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 
 const Home = () => {
-  const { theme, setTheme } = useTheme();
+  /* const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+  }, []); */
 
   return (
     <div className="flex min-h-screen bg-muted flex-col">
-      <Navbar setTheme={setTheme} theme={theme} mounted={mounted} />
+      <Navbar /* setTheme={setTheme} theme={theme} mounted={mounted} */ />
       <main className="flex-1 container mx-auto">
         <Section id="home" className="h-[10vh] lg:justify-center">
           <div className="flex flex-row w-full m-0 p-0">
