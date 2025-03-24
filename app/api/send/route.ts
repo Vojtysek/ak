@@ -1,5 +1,5 @@
 // app/api/email/route.ts
-import { EmailTemplate } from "../../../components/templates/test";
+import { EmailTemplate } from "../../../components/templates/email";
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
