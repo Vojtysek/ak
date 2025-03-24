@@ -91,7 +91,6 @@ const ContactUs = () => {
     try {
       setIsSubmitting(true);
 
-      // Volání API endpointu pro odeslání emailu
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
