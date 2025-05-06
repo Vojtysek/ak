@@ -1,35 +1,33 @@
-// app/api/email/route.ts
-import { EmailTemplate } from "../../../components/templates/email";
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { NextRequest, NextResponse } from "next/server";
+import { EmailTemplate } from "@/components/templates/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Definice typu pro data z formuláře
-type EmailFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  practiceArea:
-    | "corporate"
-    | "litigation"
-    | "family"
-    | "ip"
-    | "real-estate"
-    | "estate-planning";
-  message: string;
-};
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    // Získání dat z požadavku
-    const formData = (await request.json()) as EmailFormData;
+    const formData = await request.json();
 
-    // Kontrola, zda jsou všechna potřebná data k dispozici
-    if (!formData.firstName || !formData.email || !formData.message) {
+    // Validate Cloudflare Turnstile token
+    const turnstileResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          secret: process.env.CLOUDFLARE_SECRET_KEY,
+          response: formData.cfTurnstileResponse,
+        }),
+      }
+    );
+
+    const turnstileData = await turnstileResponse.json();
+
+    if (!turnstileData.success) {
       return NextResponse.json(
-        { error: "Chybí povinné údaje" },
+        { error: "Ověření proti robotům selhalo" },
         { status: 400 }
       );
     }

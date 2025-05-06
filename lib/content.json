@@ -1,76 +1,98 @@
 {
   "home": {
-    "title": "Kateřina Trnková",
-    "subtitle": "právní zastoupení, kterému můžete věřit",
-    "description": "Osobní přístup, profesionalita a důvěra. Poskytuji právní služby s důrazem na preciznost a maximální ochranu práv klienta.",
+    "title": "Mgr. Kateřina Trnková",
+    "subtitle": "Advokátní kancelář",
+    "description": "Poskytujeme komplexní právní poradenství se zaměřením na právo občanské, obchodní korporace a družstva, pracovní a rodinné právo a řešení sporů.",
     "buttons": {
       "consultation": "Domluvit konzultaci",
       "services": "Naše oblasti praxe"
     }
   },
   "about": {
-    "title": "O mé kanceláři",
-    "description": "Jako samostatná advokátka...",
+    "title": "O mně",
+    "description": "Mgr. Kateřina Trnková absolvovala v roce 2000 Právnickou fakultu Západočeské univerzity v Plzni. Po studiu a pobytu v zahraničí zahájila praxi v oboru v roce 2002 v přední české advokátní kanceláři se zaměřením na českou i mezinárodní klientelu. Advokátní zkoušky složila v roce 2009 a je zapsaná v seznamu České advokátní komory. V roce 2010 založila vlastní advokátní kancelář.",
     "points": [
       {
-        "title": "Odbornost a zkušenosti",
-        "description": "Dlouholetá praxe v oblasti občanského, rodinného a obchodního práva."
+        "title": "Profesionalita",
+        "description": "Klademe důraz na profesionalitu, odbornost a diskrétnost."
       },
       {
-        "title": "Diskrétnost a důvěra",
-        "description": "Zaručuji naprostou mlčenlivost a citlivý přístup ke každému případu."
+        "title": "Individuální přístup",
+        "description": "Ke každému klientovi přistupujeme individuálně s cílem splnit jeho požadavky."
       },
       {
-        "title": "Efektivní řešení sporů",
-        "description": "Hledám nejvýhodnější a nejrychlejší cesty k dosažení spravedlnosti pro své klienty."
+        "title": "Komplexní služby",
+        "description": "Poskytujeme komplexní právní poradenství v různých oblastech práva."
       }
     ]
   },
   "services": {
-    "title": "Oblasti praxe",
-    "description": "Specializuji se na širokou škálu právních oblastí a nabízím služby na míru vašim potřebám.",
+    "title": "Specializace",
+    "description": "Advokátní kancelář poskytuje právní služby jak jednotlivcům, tak obchodním korporacím.",
     "areas": [
       {
-        "title": "Obchodní právo",
-        "description": "Komplexní právní služby pro podniky všech velikostí, od startupů po zavedené korporace."
+        "title": "Bytové spoluvlastnictví a společenství vlastníků",
+        "description": "Revize a tvorba stanov, domovní řády, zastoupení společenství před soudy, založení společenství, prohlášení vlastníka."
       },
       {
-        "title": "Litigace",
-        "description": "Odborné zastupování v občanských a obchodních sporech napříč různými odvětvími."
+        "title": "Obchodně-právní vztahy",
+        "description": "Komplexní právní služby pro obchodní společnosti a družstva."
       },
       {
-        "title": "Rodinné právo",
-        "description": "Citlivé vedení při rozvodech, opatrovnictví dětí a dalších rodinných právních záležitostech."
+        "title": "Právo nemovitostí",
+        "description": "Právní poradenství při transakcích s nemovitostmi a řešení sporů."
       },
       {
-        "title": "Duševní vlastnictví",
-        "description": "Ochrana vašich kreativních děl, vynálezů a značek prostřednictvím patentů, ochranných známek a autorských práv."
+        "title": "Smluvní agenda",
+        "description": "Příprava a revize smluv v oblasti občanského a obchodního práva."
       },
       {
-        "title": "Nemovitosti",
-        "description": "Právní pomoc při transakcích s nemovitostmi, nájmech, územním plánování a sporech týkajících se nemovitostí."
+        "title": "Soudní spory",
+        "description": "Zastupování před soudy v rámci soudních řízení."
       },
       {
-        "title": "Právo práce",
-        "description": "Poradenství v oblasti pracovního práva, včetně smluvních vztahů, odškodnění a kolektivních smluv."
+        "title": "Vymáhání pohledávek",
+        "description": "Komplexní služby v oblasti vymáhání pohledávek a exekučního řízení."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Ceník",
+    "description": "Odměna za právní služby je sjednávána s cílem, aby byla dojednána předem a klient znal částku za právní služby předem.",
+    "options": [
+      {
+        "title": "Hodinová odměna",
+        "description": "Nejčastější typ odměny. Právní služby za hodinovou odměnu, která se pohybuje v sazbě od 2.200,- Kč bez DPH dle povahy a složitosti věci."
+      },
+      {
+        "title": "Paušální odměna",
+        "description": "Při dlouhodobější spolupráci je nabídnuta zvýhodněná měsíční paušální odměna."
+      },
+      {
+        "title": "Fixní odměna",
+        "description": "Tzv. úkonová odměna, která je sjednána za zpracování konkrétního úkonu právní služby."
       }
     ]
   },
   "contact": {
-    "title": "Kontaktujte mě",
-    "description": "Domluvte si konzultaci a společně najdeme nejlepší řešení pro vaši situaci.",
-    "address": "Muchova 9 / 223, 160 00 Praha 6",
-    "phone": "(+420) 233 343 617",
+    "title": "Kontakt",
+    "description": "Neváhejte nás kontaktovat pro konzultaci či více informací o našich službách.",
+    "address": "Myslíkova 2020/4, 120 00 Praha 2",
+    "phone": "+420 233 343 617",
     "email": "ktrnkova@aktrnkova.cz",
     "linkedin": "@ktrnkova",
-    "working_hours": "Pondělí - Pátek: 9:00 - 18:00"
+    "working_hours": "Pondělí - Pátek: 9:00 - 17:00",
+    "languages": "Jazyky: český, anglický a německý jazyk",
+    "collaboration": "Spolupráce: akbobek.cz",
+    "registration": "Advokátka zapsána v seznamu České advokátní komory ev. č. 12750",
+    "databox": "DS: zc2f4bh"
   },
   "footer": {
-    "copyright": "2024 Kateřina Trnková. Všechna práva vyhrazena.",
+    "copyright": "© 2024 Mgr. Kateřina Trnková. Všechna práva vyhrazena.",
     "links": {
       "privacy_policy": "Zásady ochrany osobních údajů",
       "terms": "Podmínky služby",
-      "disclaimer": "Prohlášení"
+      "cookies": "Cookies"
     }
   }
 }

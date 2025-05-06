@@ -1,6 +1,10 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,65 +12,101 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "../ui/button";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import FormText from "./formText";
-import { useState } from "react";
+} from "@/components/ui/select";
+
+const formSchema = z.object({
+  firstName: z.string().min(2, "Jméno musí mít alespoň 2 znaky"),
+  lastName: z.string().min(2, "Příjmení musí mít alespoň 2 znaky"),
+  email: z.string().email("Neplatný email"),
+  phone: z.string().optional(),
+  practiceArea: z.string().min(1, "Vyberte oblast"),
+  message: z.string().min(10, "Zpráva musí mít alespoň 10 znaků"),
+});
+
+const FormText = ({
+  name,
+  label,
+  form,
+}: {
+  name: "firstName" | "lastName" | "email" | "phone" | "message";
+  label: string;
+  form: ReturnType<typeof useForm>;
+}) => (
+  <FormField
+    control={form.control}
+    name={name}
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>{label}</FormLabel>
+        <FormControl>
+          <Textarea {...field} />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+);
 
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef(null);
 
-  const formSchema = z.object({
-    firstName: z.string().min(1, "Jméno je povinné"),
-    lastName: z.string().min(1, "Příjmení je povinné"),
-    email: z.string().email("Neplatná emailová adresa"),
-    phone: z.string().regex(/^\+?\d{9,15}$/, "Neplatné telefonní číslo"),
-    practiceArea: z
-      .enum([
-        "corporate",
-        "litigation",
-        "family",
-        "ip",
-        "real-estate",
-        "estate-planning",
-      ])
-      .refine((val) => val !== undefined, {
-        message: "Vyberte platnou oblast praxe",
-      }),
-    message: z.string().min(10, "Zpráva musí obsahovat alespoň 10 znaků"),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
       phone: "",
-      practiceArea: "corporate",
+      practiceArea: "",
       message: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  useEffect(() => {
+    // Setup Cloudflare Turnstile
+    window.turnstileCallback = (token) => {
+      setTurnstileToken(token);
+    };
+
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  async function onSubmit(values: any) {
     try {
       setIsSubmitting(true);
+
+      if (!turnstileToken) {
+        throw new Error("Prosím potvrďte, že nejste robot");
+      }
 
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          cfTurnstileResponse: turnstileToken,
+        }),
       });
 
       const result = await response.json();
@@ -76,8 +116,15 @@ const ContactUs = () => {
       }
 
       form.reset();
-    } catch (error) {
-      console.error("Chyba při odesílání:", error);
+      alert("Zpráva byla úspěšně odeslána. Děkujeme za kontaktování.");
+
+      // Reset Turnstile
+      if (window.turnstile && turnstileRef.current) {
+        window.turnstile.reset(turnstileRef.current);
+        setTurnstileToken("");
+      }
+    } catch (error: any) {
+      alert(error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -85,37 +132,89 @@ const ContactUs = () => {
 
   return (
     <Form {...form}>
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <div className="flex flex-col md:flex-row gap-4">
-          <FormText name="firstName" label="Křestní jméno" form={form} />
-          <FormText name="lastName" label="Příjmení" form={form} />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Jméno</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Příjmení</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
-        <FormText name="email" label="Email" form={form} />
-        <FormText name="phone" label="Telefon" form={form} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} type="email" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Telefon (volitelné)</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
           name="practiceArea"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Oblast praxe</FormLabel>
+              <FormLabel>Oblast práva</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Vyberte oblast praxe" />
+                  <SelectTrigger>
+                    <SelectValue placeholder="Vyberte oblast práva" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="corporate">Korporátní právo</SelectItem>
-                  <SelectItem value="litigation">Sporná agenda</SelectItem>
-                  <SelectItem value="family">Rodinné právo</SelectItem>
-                  <SelectItem value="ip">Duševní vlastnictví</SelectItem>
-                  <SelectItem value="real-estate">Nemovitosti</SelectItem>
-                  <SelectItem value="estate-planning">Dědické právo</SelectItem>
+                  <SelectItem value="bytove-spoluvlastnictvi">
+                    Bytové spoluvlastnictví
+                  </SelectItem>
+                  <SelectItem value="obchodni-pravo">Obchodní právo</SelectItem>
+                  <SelectItem value="nemovitosti">Právo nemovitostí</SelectItem>
+                  <SelectItem value="smluvni-agenda">Smluvní agenda</SelectItem>
+                  <SelectItem value="soudni-spory">Soudní spory</SelectItem>
+                  <SelectItem value="vymahani-pohledavek">
+                    Vymáhání pohledávek
+                  </SelectItem>
+                  <SelectItem value="jine">Jiné</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -123,12 +222,31 @@ const ContactUs = () => {
           )}
         />
 
-        <FormText name="message" label="Zpráva" form={form} />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Zpráva</FormLabel>
+              <FormControl>
+                <Textarea {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <div
+          ref={turnstileRef}
           className="cf-turnstile"
-          data-sitekey={process.env.CLOUDFLARE_SITE_KEY}
+          data-sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY}
+          data-callback="turnstileCallback"
         ></div>
+        {!turnstileToken && form.formState.isSubmitted && (
+          <p className="text-red-500 text-sm mt-1">
+            Prosím potvrďte, že nejste robot
+          </p>
+        )}
 
         <Button type="submit" disabled={isSubmitting} className="mt-2">
           {isSubmitting ? "Odesílám..." : "Odeslat"}
@@ -137,5 +255,15 @@ const ContactUs = () => {
     </Form>
   );
 };
+
+// Add necessary TypeScript declaration for the Turnstile callback
+declare global {
+  interface Window {
+    turnstileCallback: (token: string) => void;
+    turnstile: {
+      reset: (container: HTMLDivElement) => void;
+    };
+  }
+}
 
 export default ContactUs;
