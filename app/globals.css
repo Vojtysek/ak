@@ -2,7 +2,8 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+@source "app/**/*.{js,ts,jsx,tsx}";
+@source "components/**/*.{js,ts,jsx,tsx}";
 
 @theme inline {
   --color-main: var(--maincolor);
