@@ -66,7 +66,7 @@ const ContactUs = () => {
     };
   }, []);
 
-  async function onSubmit(values: any) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
 
@@ -99,8 +99,12 @@ const ContactUs = () => {
         window.turnstile.reset(turnstileRef.current);
         setTurnstileToken("");
       }
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Nastala chyba při odesílání zprávy"
+      );
     } finally {
       setIsSubmitting(false);
     }
