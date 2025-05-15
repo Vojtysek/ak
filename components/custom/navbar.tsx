@@ -24,18 +24,12 @@ const navbarItems = [
   },
 ];
 
-/* type PropsType = {
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
-  theme: string | undefined;
-  mounted: boolean;
-}; */
-
-export const Navbar = (/* props: PropsType */) => {
+export const Navbar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full dark:bg-[#1F1F1F] border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="w-full px-8 flex h-16 items-center justify-between ">
           <div className="">
             <Link
@@ -64,19 +58,6 @@ export const Navbar = (/* props: PropsType */) => {
             <Button asChild className="hidden md:inline-flex">
               <Link href="#kontakty">Domluvit konzultaci</Link>
             </Button>
-            {/* <Button
-              variant="outline"
-              className="hidden md:inline-flex"
-              onClick={() =>
-                props.setTheme(props.theme === "dark" ? "light" : "dark")
-              }
-            >
-              {props.mounted && props.theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </Button> */}
           </div>
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
