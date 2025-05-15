@@ -1,6 +1,6 @@
 import { Scale, Users, Shield, Award, Clock, House } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import React, { JSX, useRef, useState } from "react";
+import React, { JSX, useState } from "react";
 import content from "../../lib/content.json";
 
 const icons: JSX.Element[] = [

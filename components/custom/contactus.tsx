@@ -32,30 +32,6 @@ const formSchema = z.object({
   message: z.string().min(10, "Zpráva musí mít alespoň 10 znaků"),
 });
 
-const FormText = ({
-  name,
-  label,
-  form,
-}: {
-  name: "firstName" | "lastName" | "email" | "phone" | "message";
-  label: string;
-  form: ReturnType<typeof useForm>;
-}) => (
-  <FormField
-    control={form.control}
-    name={name}
-    render={({ field }) => (
-      <FormItem>
-        <FormLabel>{label}</FormLabel>
-        <FormControl>
-          <Textarea {...field} />
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    )}
-  />
-);
-
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");

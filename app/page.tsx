@@ -9,8 +9,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  Shield,
-  Users,
 } from "lucide-react";
 import content from "../lib/content.json";
 import { Button } from "@/components/ui/button";
