@@ -8,28 +8,25 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+  practiceArea:
+    | "corporate"
+    | "litigation"
+    | "family"
+    | "ip"
+    | "real-estate"
+    | "estate-planning";
+};
+
 interface FormTextProps {
-  name: "firstName" | "lastName" | "email" | "phone" | "message";
+  name: keyof FormValues;
   label: string;
-  form: UseFormReturn<
-    {
-      firstName: string;
-      lastName: string;
-      email: string;
-      phone: string;
-      message: string;
-      practiceArea:
-        | "corporate"
-        | "litigation"
-        | "family"
-        | "ip"
-        | "real-estate"
-        | "estate-planning";
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    any,
-    undefined
-  >;
+  form: UseFormReturn<FormValues>;
 }
 
 const FormText: React.FC<FormTextProps> = ({ name, label, form }) => {
