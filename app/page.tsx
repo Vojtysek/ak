@@ -78,7 +78,10 @@ const Home = () => {
                 height={300}
                 style={{
                   clipPath: "circle(45%)",
+                  scale: "1.3",
                 }}
+                className="object-cover"
+                priority
                 alt=""
               />
             </div>
@@ -91,45 +94,25 @@ const Home = () => {
             <h2 className="text-3xl text-main font-bold tracking-tighter sm:text-5xl">
               {content.about.title}
             </h2>
-            <div className="inline-block w-3/4 rounded-lg py-4 text-lg">
+            <p className="inline-block w-3/4 rounded-lg py-4 text-lg">
               {content.about.description}
+            </p>
+            <div className="mx-6 grid max-w-5xl items-center *:items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+              {content.about.points.map((point, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center space-y-4"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                    <Award className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">{point.title}</h3>
+                  <p className="text-muted-foreground text-center">
+                    {point.description}
+                  </p>
+                </div>
+              ))}
             </div>
-          </div>
-          <div className="mx-6 grid max-w-5xl items-center *:items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Award className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold">
-                {content.about.points[0].title}
-              </h3>
-              <p className="text-muted-foreground text-center">
-                {content.about.points[0].description}
-              </p>
-            </div>
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Shield className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold">
-                {content.about.points[1].title}
-              </h3>
-              <p className="text-muted-foreground text-center">
-                {content.about.points[1].description}
-              </p>
-            </div>
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Users className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold">
-                {content.about.points[2].title}
-              </h3>
-              <p className="text-muted-foreground text-center">
-                {content.about.points[2].description}
-              </p>
-            </div>
-            {/* </Fade> */}
           </div>
           <Separator orientation="horizontal" />
         </Section>
