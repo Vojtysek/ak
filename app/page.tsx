@@ -25,7 +25,7 @@ const Home = () => {
           className="min-h-[80vh] flex flex-col-reverse lg:flex-row items-center justify-between gap-8 py-12"
         >
           <Fade direction="up" className="w-full lg:w-1/2 space-y-4">
-            <h2 className="text-2xl md:text-4xl font-bold text-black/60 tracking-tight">
+            <h2 className="text-2xl flex items-center gap-4 md:text-4xl font-bold text-black/60 tracking-tight">
               {content.home.subtitle}
             </h2>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-main">
@@ -49,24 +49,46 @@ const Home = () => {
             </div>
           </Fade>
 
-          <Fade direction="up" className="w-full lg:w-1/2 flex justify-center">
-            <Image
-              src="/hero.jpg"
-              width={320}
-              height={320}
-              alt="Hero"
-              style={{
-                clipPath: "circle(45%)",
-              }}
-              className="rounded-full object-cover w-64 h-64 md:w-96 md:h-96"
-              priority
-            />
+          <Fade direction="up" className="w-full lg:w-1/2">
+            <div className="relative flex justify-center">
+              <Image
+                src="/hero.jpg"
+                width={320}
+                height={320}
+                alt="Hero"
+                style={{
+                  clipPath: "circle(45%)",
+                }}
+                className="rounded-full object-cover w-64 h-64 md:w-96 md:h-96"
+                priority
+              />
+              <div
+                onClick={() => {
+                  /* hide icons with data-icon */
+                  const icons = document.querySelectorAll("[data-icon]");
+                  console.log(icons);
+                  icons.forEach((icon) => {
+                    icon.classList.add("lg:hidden");
+                  });
+                }}
+              >
+                <div data-icon className="border p-4 rounded-full bg-main text-white absolute right-24 hidden lg:flex shadow-md">
+                  <lucideReact.Scale className="w-8 h-8" />
+                </div>
+                <div data-icon className="border p-4 rounded-full bg-main text-white absolute right-42 -bottom-12 hidden lg:flex shadow-md">
+                  <lucideReact.Book className="w-8 h-8" />
+                </div>
+                <div data-icon className="border p-4 rounded-full bg-main text-white absolute left-12   top-24 hidden lg:flex shadow-md">
+                  <lucideReact.Pyramid className="w-8 h-8" />
+                </div>
+              </div>
+            </div>
           </Fade>
         </Section>
 
         {/* About Section */}
         <Section id="about" className="py-16">
-          <div className="text-center space-y-6">
+          <div className="text-center flex flex-col items-center space-y-6">
             <h2 className="text-3xl sm:text-4xl font-bold text-main">
               {content.about.title}
             </h2>
