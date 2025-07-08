@@ -79,7 +79,7 @@ const Home = () => {
                   <lucideReact.Book className="w-8 h-8" />
                 </div>
                 <div data-icon className="border p-4 rounded-full bg-main text-white absolute left-12   top-24 hidden lg:flex shadow-md">
-                  <lucideReact.Pyramid className="w-8 h-8" />
+                  <lucideReact.Handshake className="w-8 h-8" />
                 </div>
               </div>
             </div>
