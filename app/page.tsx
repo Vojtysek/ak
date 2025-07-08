@@ -96,7 +96,7 @@ const Home = () => {
               <p>
                 Jmenuji se{" "}
                 <b>
-                  <u>Mgr. Kateřina Trnková</u>
+                  Mgr. Kateřina Trnková
                 </b>{" "}
                 a právnímu oboru se věnuji již od roku 2002, kdy jsem po
                 absolvování vysokoškolského studia a pracovních stáží v
