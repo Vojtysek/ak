@@ -49,8 +49,8 @@
 }
 
 :root {
-  --maincolor: #2f27ce;
-  --seccolor: #dedcff;
+  --maincolor:oklch(74.449% 0.01917 78.157);
+  --seccolor: oklch(88.678% 0.02865 79.429);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

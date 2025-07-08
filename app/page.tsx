@@ -1,15 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  Award,
-  Clock,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import * as lucideReact from "lucide-react";
 import content from "../lib/content.json";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/custom/section";
@@ -36,14 +28,14 @@ const Home = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-main">
               {content.home.title}
             </h1>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tight">
+            <h2 className="text-2xl md:text-4xl font-bold text-black/60 tracking-tight">
               {content.home.subtitle}
             </h2>
             <p className="text-muted-foreground md:text-xl">
               {content.home.description}
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="xl">
+              <Button asChild size="xl" variant="default">
                 <Link href="#kontakty">
                   {content.home.buttons.consultation}
                 </Link>
@@ -51,7 +43,7 @@ const Home = () => {
               <Button asChild variant="outline" size="xl">
                 <Link href="#services">
                   {content.home.buttons.services}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <lucideReact.ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -78,35 +70,49 @@ const Home = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-main">
               {content.about.title}
             </h2>
-            <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
-              {content.about.description}
-            </p>
+            <div className="flex flex-col gap-6 px-4 mx-auto text-justify max-w-3xl text-lg text-muted-foreground">
+              <p>
+                Jmenuji se{" "}
+                <b>
+                  <u>Mgr. Kateřina Trnková</u>
+                </b>{" "}
+                a právnímu oboru se věnuji již od roku 2002, kdy jsem po
+                absolvování vysokoškolského studia a pracovních stáží v
+                zahraničí zahájila svou kariéru v jedné z předních českých
+                advokátních kanceláří. Již od počátku jsem se zaměřovala na
+                poskytování právních služeb nejen českým, ale i mezinárodním
+                klientům, čímž jsem získala cenné zkušenosti v různorodém
+                právním prostředí.
+              </p>
+              <p>
+                V roce <b>2009 jsem úspěšně složila advokátní zkoušky</b> a
+                stala se členkou České advokátní komory. O rok později, v roce
+                2010, jsem se rozhodla vydat vlastní cestou a založila jsem svou
+                vlastní advokátní kancelář, která od té doby poskytuje{" "}
+                <b>
+                  komplexní právní služby jednotlivcům, podnikatelům i
+                  korporacím.
+                </b>
+              </p>
+              <p>
+                Samozřejmou součástí mé advokátní praxe je{" "}
+                <b>
+                  zastupování klientů před soudy a dalšími orgány v rámci
+                  soudních i mimosoudních řízení
+                </b>
+                . Kromě samotného zastupování nabízím také právní poradenství,
+                konzultace a analýzy v jednotlivých právních odvětvích – vždy s
+                důrazem na individuální přístup a maximální profesionalitu.
+              </p>
+            </div>
           </div>
-
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {content.about.points.map((point, index) => (
-              <div key={index} className="flex flex-col items-center space-y-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Award className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-semibold">{point.title}</h3>
-                <p className="text-muted-foreground text-center px-2">
-                  {point.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
           <Separator className="my-12" />
         </Section>
 
         {/* Services Section */}
         <Section id="services" className="py-16">
           <div className="text-center space-y-4">
-            <div className="inline-block rounded-full bg-background px-4 py-1 text-sm font-medium">
-              Naše odbornost
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold">
+            <h2 className="text-3xl text-main sm:text-4xl font-bold">
               {content.services.title}
             </h2>
             <p className="mx-auto max-w-2xl text-muted-foreground md:text-xl">
@@ -130,25 +136,25 @@ const Home = () => {
 
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-primary" />
+                  <lucideReact.MapPin className="h-5 w-5 text-primary" />
                   <span>{content.contact.address}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Phone className="h-5 w-5 text-primary" />
+                  <lucideReact.Phone className="h-5 w-5 text-primary" />
                   <span>{content.contact.phone}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="h-5 w-5 text-primary" />
+                  <lucideReact.Mail className="h-5 w-5 text-primary" />
                   <a href={`mailto:${content.contact.email}`}>
                     {content.contact.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Linkedin className="h-5 w-5 text-primary" />
+                  <lucideReact.Linkedin className="h-5 w-5 text-primary" />
                   <span>{content.contact.linkedin}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <lucideReact.Clock className="h-5 w-5 text-primary" />
                   <span>{content.contact.working_hours}</span>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import { Menu, Scale } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import * as sheet from "../ui/sheet";
 import content from "../../lib/content.json";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ const navbarItems = [
     name: "Domů",
   },
   {
-    name: "O nás",
+    name: "O mně",
     href: "#about",
   },
   {
@@ -37,8 +37,8 @@ export const Navbar = () => {
               className="flex items-center gap-2 w-fit font-bold text-xl"
             >
               {/* <Scale className="h-6 w-6" /> */}
-              <Image src={"logo.svg"} alt={"Logo"} width={40} height={40} />
-              <span>AK</span>
+              <Image src={"logo2.svg"} alt={"Logo"} width={40} height={40} />
+              <span className="text-black/50">AK</span>
             </Link>
           </div>
           <div className=" flex justify-center">
@@ -59,19 +59,19 @@ export const Navbar = () => {
               <Link href="#kontakty">Domluvit konzultaci</Link>
             </Button>
           </div>
-          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-            <SheetTrigger asChild>
+          <sheet.Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+            <sheet.SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            </sheet.SheetTrigger>
+            <sheet.SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col gap-6 text-right *:pr-4 py-6">
-                <SheetTitle className="flex mx-auto text-lg gap-2">
+                <sheet.SheetTitle className="flex mx-auto text-lg gap-2">
                   <Scale className="h-6 w-6" />
                   <span>AK</span>
-                </SheetTitle>
+                </sheet.SheetTitle>
                 <nav className="flex flex-col gap-4">
                   {navbarItems.map((item, index) => (
                     <Link
@@ -108,8 +108,8 @@ export const Navbar = () => {
                   </Button> */}
                 </div>
               </div>
-            </SheetContent>
-          </Sheet>
+            </sheet.SheetContent>
+          </sheet.Sheet>
         </div>
       </header>
     </>
