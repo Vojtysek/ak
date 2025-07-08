@@ -28,7 +28,7 @@
   },
   "services": {
     "title": "Specializace",
-    "description": "Advokátní kancelář poskytuje právní služby jak jednotlivcům, tak obchodním korporacím.",
+    "description": "Poskytuji právní služby jak jednotlivcům, tak obchodním korporacím.",
     "areas": [
       {
         "title": "Bytové spoluvlastnictví a společenství vlastníků",
@@ -76,7 +76,7 @@
   },
   "contact": {
     "title": "Kontakt",
-    "description": "Neváhejte nás kontaktovat pro konzultaci či více informací o našich službách.",
+    "description": "Neváhejte mě kontaktovat pro konzultaci či více informací o službách.",
     "address": "Myslíkova 2020/4, 120 00 Praha 2",
     "phone": "+420 233 343 617",
     "email": "ktrnkova@aktrnkova.cz",

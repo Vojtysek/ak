@@ -19,7 +19,7 @@ const Services = () => {
         <card.Card
           key={index}
           className={
-            "hover:border-main/50 transition-all duration-200 hover:scale-105"
+            "hover:border-main/50 transition-all border-border border-2 duration-200 hover:scale-105"
           }
         >
           <card.CardHeader className="flex flex-row items-center h-12 gap-4">

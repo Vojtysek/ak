@@ -34,6 +34,10 @@ const Home = () => {
             <p className="text-muted-foreground md:text-xl">
               {content.home.description}
             </p>
+            <div className="flex items-center gap-2 text-muted-foreground md:text-sm">
+              <lucideReact.Languages className="h-4 w-4 text-main" />
+              <span>Právní služby v češtině, angličtině a němčině</span>
+            </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button asChild size="xl" variant="default">
                 <Link href="#kontakty">
@@ -57,9 +61,9 @@ const Home = () => {
                 height={320}
                 alt="Hero"
                 style={{
-                  clipPath: "circle(45%)",
+                  clipPath: "circle(44%)",
                 }}
-                className="rounded-full object-cover w-64 h-64 md:w-96 md:h-96"
+                className="object-cover w-64 h-64 md:w-96 md:h-96"
                 priority
               />
               <div
@@ -72,13 +76,22 @@ const Home = () => {
                   });
                 }}
               >
-                <div data-icon className="border p-4 rounded-full bg-main text-white absolute right-24 hidden lg:flex shadow-md">
+                <div
+                  data-icon
+                  className="border p-4 rounded-full bg-main text-white absolute right-24 hidden lg:flex shadow-md"
+                >
                   <lucideReact.Scale className="w-8 h-8" />
                 </div>
-                <div data-icon className="border p-4 rounded-full bg-main text-white absolute right-42 -bottom-12 hidden lg:flex shadow-md">
+                <div
+                  data-icon
+                  className="border p-4 rounded-full bg-main text-white absolute right-42 -bottom-12 hidden lg:flex shadow-md"
+                >
                   <lucideReact.Book className="w-8 h-8" />
                 </div>
-                <div data-icon className="border p-4 rounded-full bg-main text-white absolute left-12   top-24 hidden lg:flex shadow-md">
+                <div
+                  data-icon
+                  className="border p-4 rounded-full bg-main text-white absolute left-12   top-24 hidden lg:flex shadow-md"
+                >
                   <lucideReact.Handshake className="w-8 h-8" />
                 </div>
               </div>
@@ -94,17 +107,13 @@ const Home = () => {
             </h2>
             <div className="flex flex-col gap-6 px-4 mx-auto text-justify max-w-3xl text-lg text-muted-foreground">
               <p>
-                Jmenuji se{" "}
-                <b>
-                  Mgr. Kateřina Trnková
-                </b>{" "}
-                a právnímu oboru se věnuji již od roku 2002, kdy jsem po
-                absolvování vysokoškolského studia a pracovních stáží v
-                zahraničí zahájila svou kariéru v jedné z předních českých
-                advokátních kanceláří. Již od počátku jsem se zaměřovala na
-                poskytování právních služeb nejen českým, ale i mezinárodním
-                klientům, čímž jsem získala cenné zkušenosti v různorodém
-                právním prostředí.
+                Jmenuji se <b>Mgr. Kateřina Trnková</b> a právnímu oboru se
+                věnuji již od roku 2002, kdy jsem po absolvování vysokoškolského
+                studia a pracovních stáží v zahraničí zahájila svou kariéru v
+                jedné z předních českých advokátních kanceláří. Již od počátku
+                jsem se zaměřovala na poskytování právních služeb nejen českým,
+                ale i mezinárodním klientům, čímž jsem získala cenné zkušenosti
+                v různorodém právním prostředí.
               </p>
               <p>
                 V roce <b>2009 jsem úspěšně složila advokátní zkoušky</b> a
@@ -127,6 +136,17 @@ const Home = () => {
                 důrazem na individuální přístup a maximální profesionalitu.
               </p>
             </div>
+            <div className="flex items-center justify-center gap-6 mt-4 border border-main/20 rounded-md py-3 bg-main/5 px-6">
+              <div className="flex items-center gap-2">
+                <lucideReact.Languages className="h-5 w-5 text-main" />
+                <span className="font-semibold">Jazyky:</span>
+              </div>
+              <p className="font-medium">Čeština</p>
+              <div className="h-4 w-px bg-main/30"></div>
+              <p className="font-medium">English</p>
+              <div className="h-4 w-px bg-main/30"></div>
+              <p className="font-medium">Deutsch</p>
+            </div>
           </div>
           <Separator className="my-12" />
         </Section>
@@ -142,7 +162,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3 max-w-6xl mx-auto">
             <Services />
           </div>
         </Section>
