@@ -25,12 +25,12 @@ const Home = () => {
           className="min-h-[80vh] flex flex-col-reverse lg:flex-row items-center justify-between gap-8 py-12"
         >
           <Fade direction="up" className="w-full lg:w-1/2 space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-main">
-              {content.home.title}
-            </h1>
             <h2 className="text-2xl md:text-4xl font-bold text-black/60 tracking-tight">
               {content.home.subtitle}
             </h2>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-main">
+              <b>{content.home.title}</b>
+            </h1>
             <p className="text-muted-foreground md:text-xl">
               {content.home.description}
             </p>
@@ -40,12 +40,12 @@ const Home = () => {
                   {content.home.buttons.consultation}
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="xl">
+              {/* <Button asChild variant="outline" size="xl">
                 <Link href="#services">
                   {content.home.buttons.services}
                   <lucideReact.ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </Button>
+              </Button> */}
             </div>
           </Fade>
 
@@ -129,7 +129,9 @@ const Home = () => {
         <Section id="kontakty" className="py-16">
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold">{content.contact.title}</h2>
+              <h2 className="text-3xl text-main font-bold">
+                {content.contact.title}
+              </h2>
               <p className="text-muted-foreground md:text-xl">
                 {content.contact.description}
               </p>
