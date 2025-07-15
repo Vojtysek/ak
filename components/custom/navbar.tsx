@@ -9,6 +9,7 @@ import { useState } from "react";
 const navbarItems = [
   {
     name: "Domů",
+    href: "#home",
   },
   {
     name: "O mně",
